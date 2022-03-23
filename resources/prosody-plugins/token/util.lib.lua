@@ -354,7 +354,7 @@ function Util:verify_room(session, room_address)
     if not self.enableDomainVerification then
         -- if auth_room is missing, this means user is anonymous (no token for
         -- its domain) we let it through, jicofo is verifying creation domain
-        if auth_room and room ~= auth_room and auth_room ~= '*' then
+        if auth_room and room:find(auth_room, 1, true) ~= 1 and auth_room ~= '*' then
             return false;
         end
 

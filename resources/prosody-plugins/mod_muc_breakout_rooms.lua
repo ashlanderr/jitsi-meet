@@ -193,7 +193,8 @@ end
 
 function create_breakout_room(room_jid, subject)
     local main_room, main_room_jid = get_main_room(room_jid);
-    local breakout_room_jid = uuid_gen() .. '@' .. breakout_rooms_muc_component_config;
+    local main_room_node = jid_split(main_room_jid);
+    local breakout_room_jid = main_room_node .. '-' .. uuid_gen() .. '@' .. breakout_rooms_muc_component_config;
 
     if not main_room._data.breakout_rooms then
         main_room._data.breakout_rooms = {};
